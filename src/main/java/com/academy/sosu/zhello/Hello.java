@@ -1,4 +1,4 @@
-package com.academy.sosu;
+package com.academy.sosu.zhello;
 
 
 import lombok.AllArgsConstructor;
@@ -9,6 +9,4 @@ import lombok.Getter;
 public class Hello {
     String name;
     String address;
-
-
 }
