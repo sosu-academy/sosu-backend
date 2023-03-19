@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-03-19T11:59:00.143Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="wyBCmshtKiRMdAu27MGK" version="21.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-03-19T12:42:42.063Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="-dvzpaiCHaXTDRphiIvp" version="21.0.8" type="github">
   <diagram name="페이지-1" id="CIC7R-I5cl5aypZM1Wbc">
     <mxGraphModel dx="1363" dy="890" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -427,7 +427,7 @@
             <mxRectangle width="249" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fv7W8k4iM33XfDiJ0QUC-125" value="납부 예상내역(NEXT_PAY)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="fv7W8k4iM33XfDiJ0QUC-125" value="납부 예상내역(NEXT_PAYMENT)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="200" y="60" width="310" height="210" as="geometry" />
         </mxCell>
         <mxCell id="fv7W8k4iM33XfDiJ0QUC-126" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="fv7W8k4iM33XfDiJ0QUC-125">
@@ -438,7 +438,7 @@
             <mxRectangle width="68" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fv7W8k4iM33XfDiJ0QUC-128" value="납부 예상내역 번호(NEXT_PAY_NO)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" vertex="1" parent="fv7W8k4iM33XfDiJ0QUC-126">
+        <mxCell id="fv7W8k4iM33XfDiJ0QUC-128" value="납부 예상내역 번호(NEXT_PAYMENT_NO)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" vertex="1" parent="fv7W8k4iM33XfDiJ0QUC-126">
           <mxGeometry x="68" width="242" height="30" as="geometry">
             <mxRectangle width="242" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -464,7 +464,7 @@
             <mxRectangle width="68" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fv7W8k4iM33XfDiJ0QUC-134" value="납부 금액(PAYMENT)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" vertex="1" parent="fv7W8k4iM33XfDiJ0QUC-132">
+        <mxCell id="fv7W8k4iM33XfDiJ0QUC-134" value="납부 금액(PAYMENT_AMOUNT)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" vertex="1" parent="fv7W8k4iM33XfDiJ0QUC-132">
           <mxGeometry x="68" width="242" height="30" as="geometry">
             <mxRectangle width="242" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -582,7 +582,7 @@
         <mxCell id="fv7W8k4iM33XfDiJ0QUC-154" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="fv7W8k4iM33XfDiJ0QUC-141">
           <mxGeometry y="150" width="275" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="fv7W8k4iM33XfDiJ0QUC-155" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;" vertex="1" parent="fv7W8k4iM33XfDiJ0QUC-154">
+        <mxCell id="fv7W8k4iM33XfDiJ0QUC-155" value="NULL" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;" vertex="1" parent="fv7W8k4iM33XfDiJ0QUC-154">
           <mxGeometry width="61" height="30" as="geometry">
             <mxRectangle width="61" height="30" as="alternateBounds" />
           </mxGeometry>
