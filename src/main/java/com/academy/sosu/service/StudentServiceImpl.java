@@ -1,5 +1,6 @@
 package com.academy.sosu.service;
 
+import com.academy.sosu.exception.ErrorCode;
 import com.academy.sosu.exception.InsertDatabaseException;
 import com.academy.sosu.mapper.StudentRepository;
 import com.academy.sosu.model.dto.student.StudentCreateRequestDTO;
@@ -12,13 +13,13 @@ public class StudentServiceImpl implements StudentService {
     StudentRepository studentRepository;
 
     @Override
-    public StudentResponseDTO createStudent(StudentCreateRequestDTO requestDTO) {
+    public StudentResponseDTO createStudent(StudentCreateRequestDTO requestDTO) throws InsertDatabaseException {
         int result = studentRepository.insertStudent(requestDTO);
 
         if (result == 1) {
             return studentRepository.searchStudentId(requestDTO);
         } else {
-            throw new InsertDatabaseException("학생 insert에 문제가 발생했습니다.");
+            throw new InsertDatabaseException(ErrorCode.DB_INSERT_ERROR);
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.academy.sosu.controller;
 
+import com.academy.sosu.exception.InsertDatabaseException;
 import com.academy.sosu.model.base.ResponseObject;
 import com.academy.sosu.model.dto.student.StudentCreateRequestDTO;
 import com.academy.sosu.model.dto.student.StudentResponseDTO;
@@ -20,8 +21,15 @@ public class StudentController {
 
     @PostMapping("/create")
     public ResponseObject<StudentResponseDTO> createStudent(StudentCreateRequestDTO requestDTO) {
-        StudentResponseDTO responseDTO = studentService.createStudent(requestDTO);
-        return new ResponseObject<>(responseDTO);
+
+
+        try {
+            StudentResponseDTO responseDTO = studentService.createStudent(requestDTO);
+
+            return new ResponseObject<>(responseDTO);
+        } catch (InsertDatabaseException e) {
+            return new ResponseObject<>(e.getMessage());
+        }
     }
 
 
