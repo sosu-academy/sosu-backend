@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 @Getter
 public enum ErrorCode {
     DB_INSERT_ERROR("DB Insert Error", HttpStatus.CONFLICT),
+    DB_SELECT_NO_RESULT("DB Select No Result", HttpStatus.INTERNAL_SERVER_ERROR),
+    DB_SELECT_ERROR("DB Select Error", HttpStatus.INTERNAL_SERVER_ERROR)
         ;
 
     private final String errorString;

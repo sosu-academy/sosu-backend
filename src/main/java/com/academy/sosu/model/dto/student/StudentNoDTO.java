@@ -5,6 +5,6 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class StudentResponseDTO {
+public class StudentNoDTO {
     public Long studentNo;
 }
