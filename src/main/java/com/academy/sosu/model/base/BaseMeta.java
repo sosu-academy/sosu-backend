@@ -1,10 +1,10 @@
 package com.academy.sosu.model.base;
 
+import com.academy.sosu.model.dto.common.SearchDTO;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
 public class BaseMeta {
 
     /* 태이블 내 전체 컬럼 수 */
@@ -20,12 +20,23 @@ public class BaseMeta {
     public String entries;
 
 
-    private int calculateTotalPage(int totalNum, int entries) {
+    private String calculateTotalPage(String tn, String e) {
+        int totalNum = Integer.parseInt(tn);
+        int entries = Integer.parseInt(e);
+
         int totalPage = totalNum / entries;
         if (totalNum % entries != 0) {
             totalPage += 1;
         }
 
-        return totalPage;
+        return Integer.toString(totalPage);
+    }
+
+    @Builder
+    BaseMeta(SearchDTO searchDTO, int totalNum) {
+        this.totalNum = Integer.toString(totalNum);
+        this.currentPage = searchDTO.getCurrentPage();
+        this.entries = searchDTO.getEntries();
+        this.totalPage = calculateTotalPage(this.totalNum, this.entries);
     }
 }

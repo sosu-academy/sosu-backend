@@ -12,6 +12,6 @@ public class SearchDTO {
     /* 검색할 현재 페이지 */
     public String currentPage;
 
-    /* 태이블 내 전체 컬럼 수 */
-    public String totalNum;
+    /* 검색 키워드 */
+    public String keyword;
 }
