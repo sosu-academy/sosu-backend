@@ -2,17 +2,19 @@ package com.academy.sosu.controller;
 
 import com.academy.sosu.exception.InsertDatabaseException;
 import com.academy.sosu.exception.SearchDatabaseException;
+import com.academy.sosu.model.base.BaseMeta;
 import com.academy.sosu.model.base.ResponseObject;
-import com.academy.sosu.model.dto.student.StudentDTO;
-import com.academy.sosu.model.dto.student.StudentCreateRequestDTO;
-import com.academy.sosu.model.dto.student.StudentNoDTO;
+import com.academy.sosu.model.dto.common.SearchDTO;
+import com.academy.sosu.model.dto.student.*;
 import com.academy.sosu.service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
-@RestController("/students")
+
+@RestController("/students/api/v1")
 public class StudentController {
     @Autowired
     StudentService studentService;
@@ -44,10 +46,19 @@ public class StudentController {
         }
     }
 
-//    @GetMapping("/search")
-//    public ResponseObject<Student> searchAllStudent() {
-//        return new ResponseObject<Student>();
-//    }
+    //TODO 검색 키워드 확인
+    @GetMapping("/search")
+    public @ResponseBody
+    ResponseObject<StudentListDTO> searchStudentList(SearchDTO searchDTO) {
+
+        StudentListDTO studentListDTO = studentService.searchStudentList(searchDTO);
+        BaseMeta baseMeta = BaseMeta.builder()
+                .searchDTO(searchDTO)
+                .totalNum(studentService.selectStudentCount(searchDTO))
+                .build();
+
+        return new ResponseObject<>(studentListDTO, baseMeta);
+    }
 
 //    @PostMapping("/update")
 //

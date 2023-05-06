@@ -8,5 +8,5 @@ import java.util.List;
 @Getter
 @Builder
 public class StudentListDTO {
-    List<StudentDTO> students;
+    public List<StudentDTO> students;
 }
