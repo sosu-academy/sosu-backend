@@ -1,12 +1,11 @@
 package com.academy.sosu.model.dto.student;
 
-import com.academy.sosu.model.object.Student;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class StudentCreateRequestDTO {
+public class StudentCreateDTO {
     public String studentName;
     public String school;
     public String birthYear;
