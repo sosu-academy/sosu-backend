@@ -17,13 +17,9 @@ public class StudentRepositoryImpl implements StudentRepository {
     private static final String ns = "studentMapper.";
 
     @Override
-    public int insertStudent(StudentCreateDTO studentCreateDTO) {
-        return sqlSessionTemplate.insert(ns + "insertStudent", studentCreateDTO);
-    }
-
-    @Override
-    public StudentNoDTO searchStudentId(StudentCreateDTO studentCreateDTO) {
-        return sqlSessionTemplate.selectOne(ns + "selectStudentId", studentCreateDTO);
+    public Long insertStudent(StudentDTO studentDTO) {
+        sqlSessionTemplate.insert(ns + "insertStudent", studentDTO);
+        return studentDTO.getStudentNo();
     }
 
     @Override

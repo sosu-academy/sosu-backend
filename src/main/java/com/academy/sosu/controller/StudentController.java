@@ -18,7 +18,7 @@ public class StudentController {
 
     @PostMapping
     public @ResponseBody
-    ResponseObject<StudentNoDTO> createStudent(@RequestBody StudentCreateDTO requestDTO) {
+    ResponseObject<StudentNoDTO> createStudent(@RequestBody StudentDTO requestDTO) {
 
         //TODO 유효성 검사 로직 추가
 

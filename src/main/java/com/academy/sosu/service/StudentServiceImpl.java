@@ -20,11 +20,13 @@ public class StudentServiceImpl implements StudentService {
     StudentRepository studentRepository;
 
     @Override
-    public StudentNoDTO createStudent(StudentCreateDTO studentCreateDTO) throws DatabaseException {
-        int result = studentRepository.insertStudent(studentCreateDTO);
+    public StudentNoDTO createStudent(StudentDTO studentDTO) throws DatabaseException {
+        Long result = studentRepository.insertStudent(studentDTO);
 
-        if (result == 1) {
-            return studentRepository.searchStudentId(studentCreateDTO);
+        if (result != 0) {
+            return StudentNoDTO.builder()
+                    .studentNo(result)
+                    .build();
         } else {
             throw new DatabaseException(ErrorCode.DB_INSERT_ERROR);
         }

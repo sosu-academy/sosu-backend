@@ -10,9 +10,7 @@ import java.util.List;
 
 @Repository
 public interface StudentRepository {
-    int insertStudent(StudentCreateDTO requestDTO);
-
-    StudentNoDTO searchStudentId(StudentCreateDTO requestDTO);
+    Long insertStudent(StudentDTO requestDTO);
 
     StudentDTO selectOneStudentByNo(StudentNoDTO requestDTO);
 
