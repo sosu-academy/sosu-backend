@@ -2,7 +2,7 @@ package com.academy.sosu.mapper;
 
 import com.academy.sosu.model.dto.common.SearchRepoDTO;
 import com.academy.sosu.model.dto.student.StudentDTO;
-import com.academy.sosu.model.dto.student.StudentCreateRequestDTO;
+import com.academy.sosu.model.dto.student.StudentCreateDTO;
 import com.academy.sosu.model.dto.student.StudentNoDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,31 +14,41 @@ public class StudentRepositoryImpl implements StudentRepository {
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
 
-    private String ns = "studentMapper.";
+    private static final String ns = "studentMapper.";
 
     @Override
-    public int insertStudent(StudentCreateRequestDTO requestDTO) {
-        return sqlSessionTemplate.insert("insertStudent", requestDTO);
+    public int insertStudent(StudentCreateDTO studentCreateDTO) {
+        return sqlSessionTemplate.insert(ns + "insertStudent", studentCreateDTO);
     }
 
     @Override
-    public StudentNoDTO searchStudentId(StudentCreateRequestDTO requestDTO) {
-        return sqlSessionTemplate.selectOne("selectStudentId", requestDTO);
+    public StudentNoDTO searchStudentId(StudentCreateDTO studentCreateDTO) {
+        return sqlSessionTemplate.selectOne(ns + "selectStudentId", studentCreateDTO);
     }
 
     @Override
-    public StudentDTO selectOneStudentByNo(StudentNoDTO requestDTO) {
-        return sqlSessionTemplate.selectOne("selectOneStudentByNo", requestDTO);
+    public StudentDTO selectOneStudentByNo(StudentNoDTO studentNoDTO) {
+        return sqlSessionTemplate.selectOne(ns + "selectOneStudentByNo", studentNoDTO);
     }
 
     @Override
     public int selectStudentCount() {
-        return sqlSessionTemplate.selectOne("selectStudentCount");
+        return sqlSessionTemplate.selectOne(ns + "selectStudentCount");
     }
 
     @Override
     public List<StudentDTO> searchStudentList(SearchRepoDTO repoDTO) {
-        return sqlSessionTemplate.selectList("searchStudentList", repoDTO);
+        return sqlSessionTemplate.selectList(ns + "searchStudentList", repoDTO);
+    }
+
+    @Override
+    public int updateStudent(StudentDTO studentDTO) {
+        return sqlSessionTemplate.update(ns + "updateStudent", studentDTO);
+    }
+
+    @Override
+    public int deleteStudent(StudentNoDTO studentNoDTO) {
+        return sqlSessionTemplate.delete(ns + "deleteStudent", studentNoDTO);
     }
 
     /*

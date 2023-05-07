@@ -1,13 +1,13 @@
 package com.academy.sosu.service;
 
 import com.academy.sosu.exception.ErrorCode;
-import com.academy.sosu.exception.InsertDatabaseException;
-import com.academy.sosu.exception.SearchDatabaseException;
+import com.academy.sosu.exception.DatabaseException;
 import com.academy.sosu.mapper.StudentRepository;
+import com.academy.sosu.model.dto.common.EmptyDTO;
 import com.academy.sosu.model.dto.common.SearchDTO;
 import com.academy.sosu.model.dto.common.SearchRepoDTO;
 import com.academy.sosu.model.dto.student.StudentDTO;
-import com.academy.sosu.model.dto.student.StudentCreateRequestDTO;
+import com.academy.sosu.model.dto.student.StudentCreateDTO;
 import com.academy.sosu.model.dto.student.StudentListDTO;
 import com.academy.sosu.model.dto.student.StudentNoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,31 +20,31 @@ public class StudentServiceImpl implements StudentService {
     StudentRepository studentRepository;
 
     @Override
-    public StudentNoDTO createStudent(StudentCreateRequestDTO requestDTO) throws InsertDatabaseException {
-        int result = studentRepository.insertStudent(requestDTO);
+    public StudentNoDTO createStudent(StudentCreateDTO studentCreateDTO) throws DatabaseException {
+        int result = studentRepository.insertStudent(studentCreateDTO);
 
         if (result == 1) {
-            return studentRepository.searchStudentId(requestDTO);
+            return studentRepository.searchStudentId(studentCreateDTO);
         } else {
-            throw new InsertDatabaseException(ErrorCode.DB_INSERT_ERROR);
+            throw new DatabaseException(ErrorCode.DB_INSERT_ERROR);
         }
     }
 
     @Override
-    public StudentDTO selectOneStudentByNo(StudentNoDTO requestDTO) throws SearchDatabaseException {
-        Optional<StudentDTO> studentDTO = Optional.ofNullable(studentRepository.selectOneStudentByNo(requestDTO));
+    public StudentDTO selectOneStudentByNo(StudentNoDTO studentNoDTO) throws DatabaseException {
+        Optional<StudentDTO> studentDTO = Optional.ofNullable(studentRepository.selectOneStudentByNo(studentNoDTO));
 
         if (studentDTO.isPresent()) {
             return studentDTO.get();
         } else {
-            throw new SearchDatabaseException(ErrorCode.DB_SELECT_NO_RESULT);
+            throw new DatabaseException(ErrorCode.DB_SELECT_NO_RESULT);
         }
     }
 
     @Override
-    public StudentListDTO searchStudentList(SearchDTO requestDTO) {
+    public StudentListDTO searchStudentList(SearchDTO searchDTO) {
         SearchRepoDTO repoDTO = SearchRepoDTO.builder()
-                .searchDTO(requestDTO)
+                .searchDTO(searchDTO)
                 .build();
 
         List<StudentDTO> studentDTOS = studentRepository.searchStudentList(repoDTO);
@@ -55,7 +55,27 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public int selectStudentCount(SearchDTO requestDTO) {
+    public int selectStudentCount() {
         return studentRepository.selectStudentCount();
+    }
+
+    @Override
+    public StudentDTO updateStudent(StudentDTO studentDTO) throws DatabaseException {
+        int updateStudent = studentRepository.updateStudent(studentDTO);
+        if (updateStudent == 1) {
+            return studentDTO;
+        } else {
+            throw new DatabaseException(ErrorCode.DB_UPDATE_ERROR);
+        }
+    }
+
+    @Override
+    public EmptyDTO deleteStudent(StudentNoDTO studentNoDTO) throws DatabaseException{
+        int deleteStudent = studentRepository.deleteStudent(studentNoDTO);
+        if (deleteStudent == 1) {
+            return new EmptyDTO();
+        } else {
+            throw new DatabaseException(ErrorCode.DB_DELETE_ERROR);
+        }
     }
 }
