@@ -44,7 +44,7 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public int deleteStudent(StudentNoDTO studentNoDTO) {
-        return sqlSessionTemplate.delete(ns + "deleteStudent", studentNoDTO);
+        return sqlSessionTemplate.update(ns + "deleteStudent", studentNoDTO);
     }
 
     /*
