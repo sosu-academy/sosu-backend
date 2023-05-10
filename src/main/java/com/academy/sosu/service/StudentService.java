@@ -6,9 +6,7 @@ import com.academy.sosu.model.dto.common.SearchDTO;
 import com.academy.sosu.model.dto.student.StudentDTO;
 import com.academy.sosu.model.dto.student.StudentListDTO;
 import com.academy.sosu.model.dto.student.StudentNoDTO;
-import org.springframework.stereotype.Service;
 
-@Service
 public interface StudentService {
 
     StudentNoDTO createStudent(StudentDTO requestDTO) throws DatabaseException;

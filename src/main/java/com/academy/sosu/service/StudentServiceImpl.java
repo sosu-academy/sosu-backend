@@ -11,10 +11,12 @@ import com.academy.sosu.model.dto.student.StudentCreateDTO;
 import com.academy.sosu.model.dto.student.StudentListDTO;
 import com.academy.sosu.model.dto.student.StudentNoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentRepository studentRepository;
