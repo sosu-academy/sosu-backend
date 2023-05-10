@@ -1,10 +1,10 @@
 package com.academy.sosu.model.base;
 
 import com.academy.sosu.exception.ErrorCode;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import org.springframework.lang.Nullable;
 
-import javax.validation.constraints.NotNull;
 
 /**
  * ResponseObject

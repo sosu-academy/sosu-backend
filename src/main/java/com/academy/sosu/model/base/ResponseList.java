@@ -1,9 +1,9 @@
 package com.academy.sosu.model.base;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import org.springframework.lang.Nullable;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
