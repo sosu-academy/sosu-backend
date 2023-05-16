@@ -1,15 +1,16 @@
-package com.academy.sosu.mapper;
+package com.academy.sosu.repository;
 
 import com.academy.sosu.model.dto.common.SearchRepoDTO;
 import com.academy.sosu.model.dto.student.StudentDTO;
-import com.academy.sosu.model.dto.student.StudentCreateDTO;
 import com.academy.sosu.model.dto.student.StudentNoDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Slf4j
 @Repository
 public class StudentRepositoryImpl implements StudentRepository {
 
@@ -20,8 +21,10 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public Long insertStudent(StudentDTO studentDTO) {
+        log.info("StudentRepositoryImpl.insertStudent() ::: " + studentDTO.toString());
         sqlSessionTemplate.insert(ns + "insertStudent", studentDTO);
-        return studentDTO.getStudentNo();
+//        return studentDTO.getStudentNo();
+        return 1L;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.academy.sosu.model.object;
+package com.academy.sosu.model.entity;
 
 import lombok.Builder;
 import lombok.Getter;

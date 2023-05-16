@@ -8,19 +8,25 @@ import com.academy.sosu.model.dto.common.SearchDTO;
 import com.academy.sosu.model.dto.student.*;
 import com.academy.sosu.service.StudentService;
 
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@RestController("/api/v1/students")
+@Slf4j
+@EnableWebMvc
+@RestController
+@RequestMapping("/api/v1/students")
 public class StudentController {
     @Autowired
     StudentService studentService;
 
     @PostMapping
     public @ResponseBody
-    ResponseObject<StudentNoDTO> createStudent(@RequestBody StudentDTO requestDTO) {
+    ResponseObject<StudentNoDTO> createStudent(@Valid @RequestBody StudentDTO requestDTO) {
 
-        //TODO 유효성 검사 로직 추가
+        log.info("StudentController.createStudent() ::: " + requestDTO.toString());
 
         try {
             StudentNoDTO responseDTO = studentService.createStudent(requestDTO);
@@ -33,7 +39,7 @@ public class StudentController {
 
     @GetMapping
     public @ResponseBody
-    ResponseObject<StudentDTO> selectOneStudentByNo(StudentNoDTO requestDTO) {
+    ResponseObject<StudentDTO> selectOneStudentByNo(@Valid @RequestBody StudentNoDTO requestDTO) {
         try {
             StudentDTO responseDTO = studentService.selectOneStudentByNo(requestDTO);
 
@@ -46,7 +52,7 @@ public class StudentController {
     //TODO 검색 키워드 확인
     @GetMapping("/{studentNo}")
     public @ResponseBody
-    ResponseObject<StudentListDTO> searchStudentList(SearchDTO searchDTO) {
+    ResponseObject<StudentListDTO> searchStudentList(@Valid SearchDTO searchDTO) {
 
         StudentListDTO studentListDTO = studentService.searchStudentList(searchDTO);
         BaseMeta baseMeta = BaseMeta.builder()
@@ -59,7 +65,7 @@ public class StudentController {
 
     @PutMapping
     public @ResponseBody
-    ResponseObject<StudentDTO> updateStudent(StudentDTO requestDTO) {
+    ResponseObject<StudentDTO> updateStudent(@Valid StudentDTO requestDTO) {
         try {
             StudentDTO responseDTO = studentService.updateStudent(requestDTO);
 
@@ -71,7 +77,7 @@ public class StudentController {
 
     @DeleteMapping
     public @ResponseBody
-    ResponseObject<EmptyDTO> deleteStudent(StudentNoDTO requestDTO) {
+    ResponseObject<EmptyDTO> deleteStudent(@Valid StudentNoDTO requestDTO) {
         try {
             return new ResponseObject<>(studentService.deleteStudent(requestDTO));
         } catch (DatabaseException e) {

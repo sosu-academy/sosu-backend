@@ -1,10 +1,8 @@
-package com.academy.sosu.mapper;
+package com.academy.sosu.repository;
 
 import com.academy.sosu.model.dto.common.SearchRepoDTO;
-import com.academy.sosu.model.dto.student.StudentCreateDTO;
 import com.academy.sosu.model.dto.student.StudentDTO;
 import com.academy.sosu.model.dto.student.StudentNoDTO;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

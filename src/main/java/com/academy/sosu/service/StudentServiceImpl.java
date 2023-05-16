@@ -2,28 +2,34 @@ package com.academy.sosu.service;
 
 import com.academy.sosu.exception.ErrorCode;
 import com.academy.sosu.exception.DatabaseException;
-import com.academy.sosu.mapper.StudentRepository;
+import com.academy.sosu.repository.StudentRepository;
 import com.academy.sosu.model.dto.common.EmptyDTO;
 import com.academy.sosu.model.dto.common.SearchDTO;
 import com.academy.sosu.model.dto.common.SearchRepoDTO;
 import com.academy.sosu.model.dto.student.StudentDTO;
-import com.academy.sosu.model.dto.student.StudentCreateDTO;
 import com.academy.sosu.model.dto.student.StudentListDTO;
 import com.academy.sosu.model.dto.student.StudentNoDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class StudentServiceImpl implements StudentService {
+
     @Autowired
     StudentRepository studentRepository;
 
     @Override
+    @Transactional
     public StudentNoDTO createStudent(StudentDTO studentDTO) throws DatabaseException {
         Long result = studentRepository.insertStudent(studentDTO);
+
+        log.info("StudentServiceImpl.createStudent() ::: " + studentDTO.toString());
 
         if (result != 0) {
             return StudentNoDTO.builder()
@@ -35,6 +41,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public StudentDTO selectOneStudentByNo(StudentNoDTO studentNoDTO) throws DatabaseException {
         Optional<StudentDTO> studentDTO = Optional.ofNullable(studentRepository.selectOneStudentByNo(studentNoDTO));
 
@@ -46,6 +53,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public StudentListDTO searchStudentList(SearchDTO searchDTO) {
         SearchRepoDTO repoDTO = SearchRepoDTO.builder()
                 .searchDTO(searchDTO)
@@ -59,11 +67,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public int selectStudentCount() {
         return studentRepository.selectStudentCount();
     }
 
     @Override
+    @Transactional
     public StudentDTO updateStudent(StudentDTO studentDTO) throws DatabaseException {
         int updateStudent = studentRepository.updateStudent(studentDTO);
         if (updateStudent == 1) {
@@ -74,6 +84,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public EmptyDTO deleteStudent(StudentNoDTO studentNoDTO) throws DatabaseException{
         int deleteStudent = studentRepository.deleteStudent(studentNoDTO);
         if (deleteStudent == 1) {
