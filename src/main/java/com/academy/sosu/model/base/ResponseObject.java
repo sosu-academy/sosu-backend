@@ -1,9 +1,10 @@
 package com.academy.sosu.model.base;
 
+import com.academy.sosu.exception.ErrorCode;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import org.springframework.lang.Nullable;
 
-import javax.validation.constraints.NotNull;
 
 /**
  * ResponseObject
@@ -15,14 +16,22 @@ import javax.validation.constraints.NotNull;
  *      }
  * }
  *,
-// * {
-// *     status: error,
-// *     errorMessage: ...
-// * }
+ * {
+ *     status: error,
+ *     errorMessage: ...
+ * }
+ * ,
+ * {
+ *      status: error,
+ *      data: {
+ *          [payload]: {}, //얘는 실제 주고받는 데이터(알맹이 데이터, Object)
+ *      }
+ * }
  */
 @Getter
 public class ResponseObject<T> {
     String status;
+    String errorMessage;
     ObjectData<T> data;
 
     public ResponseObject(@NotNull T payload) {
@@ -36,6 +45,17 @@ public class ResponseObject<T> {
         } else {
             this.data = new ObjectData<>(payload, meta);
         }
+    }
+
+    public ResponseObject(@NotNull String errorMessage) {
+        this.status = "error";
+        this.errorMessage = errorMessage;
+    }
+
+    public ResponseObject(@NotNull String errorMessage, @NotNull T payload) {
+        this.status = "error";
+        this.errorMessage = errorMessage;
+        this.data = new ObjectData<>(payload);
     }
 
     @Getter

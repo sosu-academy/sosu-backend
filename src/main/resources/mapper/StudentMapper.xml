@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.academy.sosu.repository.StudentRepository">
+    <insert id="insertStudent"
+            parameterType="com.academy.sosu.model.dto.student.StudentDTO"
+            keyProperty="studentNo">
+        <selectKey keyProperty="studentNo" order="BEFORE" resultType="int">
+            SELECT IFNULL(MAX(STUDENT_NO), 0) + 1 AS studentNo FROM STUDENT;
+        </selectKey>
+        INSERT INTO STUDENT
+        (
+            STUDENT_NO
+            , STUDENT_NAME
+            , SCHOOL
+            , BIRTH_YEAR
+            , PARENT_PHONE_NO1
+            , PARENT_PHONE_NO2
+            , STUDENT_PHONE_NO
+            , GRADUATE_YN
+            , STUDENT_NOW_YN
+        )
+        VALUES
+        (
+            #{studentNo}
+            , #{studentName}
+            , #{school}
+            , #{birthYear}
+            , #{parentPhoneNo1}
+            , #{parentPhoneNo2}
+            , #{studentPhoneNo}
+            , 'N'
+            , 'Y'
+        );
+    </insert>
+
+    <select id="selectOneStudentByNo"
+            parameterType="com.academy.sosu.model.dto.student.StudentNoDTO"
+            resultType="com.academy.sosu.model.dto.student.StudentDTO">
+        SELECT
+            STUDENT_NO
+            , STUDENT_NAME
+            , SCHOOL
+            , BIRTH_YEAR
+            , PARENT_PHONE_NO1
+            , PARENT_PHONE_NO2
+            , STUDENT_PHONE_NO
+            , GRADUATE_YN
+            , STUDENT_NOW_YN
+        FROM STUDENT
+        WHERE STUDENT_NO = #{studentNo};
+    </select>
+
+    <select id="selectStudentCount">
+        SELECT COUNT(STUDENT_NO) AS COUNT
+        FROM STUDENT;
+    </select>
+
+    <select id="searchStudentList"
+            parameterType="com.academy.sosu.model.dto.common.SearchRepoDTO"
+            resultType="com.academy.sosu.model.dto.student.StudentDTO">
+
+    </select>
+
+    <update id="updateStudent"
+            parameterType="com.academy.sosu.model.dto.student.StudentDTO">
+        UPDATE STUDENT
+        SET
+            STUDENT_NAME        = #{studentName}
+            , SCHOOL            = #{school}
+            , BIRTH_YEAR        = #{birthYear}
+            , PARENT_PHONE_NO1  = #{parentPhoneNo1}
+            , PARENT_PHONE_NO2  = #{parentPhoneNo2}
+            , STUDENT_PHONE_NO  = #{studentPhoneNo}
+            , GRADUATE_YN       = #{graduateYn}
+            , STUDENT_NOW_YN    = #{studentNowYn}
+        WHERE STUDENT_NO        = #{studentNo};
+    </update>
+
+    <update id="deleteStudent"
+            parameterType="com.academy.sosu.model.dto.student.StudentNoDTO">
+        UPDATE STUDENT
+        SET STUDENT_NOW_YN    = #{studentNowYn}
+        WHERE STUDENT_NO        = #{studentNo};
+    </update>
+</mapper>
